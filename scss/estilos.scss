@@ -1,0 +1,81 @@
+//Variables
+$primary-color:#3498db;
+$todo: 100%;
+$smartphones: "(max-width: 480px)";
+$monitor:"(min-width: 1024px)" ;
+
+//Mixings
+
+@mixin transition($time){
+-webkit-transition: all $time ease-in-out;
+-moz-transition: all $time ease-in-out;
+-ms-transition: all $time ease-in-out;
+-o-transition: all $time ease-in-out;
+transition: all $time ease-in-out;
+}
+@mixin border-box{ 
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+@mixin tablets{
+	@media only screen and (min-width:480px) and (max-width: 768px){
+		@content;
+}
+}
+
+//PlaceHolder
+%border{
+	border-radius: 20px;
+}
+//Partials
+@import"_reset.scss";
+
+body{ width: $todo;
+	@include transition(.3s);
+	.wrapper{
+	@extend body;
+	@extend %border;
+	width: 100%;
+	margin: 0 auto;
+	min-height: 300px;
+	@media  #{$smartphones}
+	{width: $todo; padding:20px;}
+
+	@include tablets()
+	{ width: $todo; padding: 10px;}
+	@media #{$monitor}
+	{width: $todo;
+
+	} 
+
+	.contenedor-prueba{
+		@include border-box();
+		width: $todo; 
+		height: 300px;
+		float: left;
+		background: $primary-color;
+		@media  #{$smartphones}
+			{
+				width: $todo;
+			} /* Movil */
+		@include tablets()
+		{
+			width: $todo/2;
+		}/* Tabletas */
+		@media #{$monitor}
+		{
+			width: $todo;
+		} /* Monitor */
+	}
+	.contenedor-prueba2{@extend .contenedor-prueba; background:darken($primary-color,10%); 
+	
+	}
+	.contenedor-prueba3{@extend .contenedor-prueba; background:desaturate($primary-color,40%); }
+	.contenedor-prueba4{@extend .contenedor-prueba; background:complement($primary-color); }
+	.contenedor-prueba5{@extend .contenedor-prueba; background:invert($primary-color); }
+
+	 }
+	}
+	
